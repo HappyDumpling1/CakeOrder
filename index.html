@@ -8,7 +8,7 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       background-color: #ffffff;
-      color: #0a2a66; /* deep blue text */
+      color: #0a2a66;
       padding: 20px;
     }
 
@@ -76,7 +76,7 @@
       <input type="text" id="reg-username" placeholder="Username" required>
       <input type="email" id="reg-email" placeholder="Email" required>
       <input type="password" id="reg-password" placeholder="Password" required>
-      <button class="button" onclick="nextStep('login-section')">Register</button>
+      <button class="button" onclick="registerUser()">Register</button>
     </div>
 
     <!-- Login -->
@@ -84,18 +84,48 @@
       <h2>Login</h2>
       <input type="text" id="login-username" placeholder="Username" required>
       <input type="password" id="login-password" placeholder="Password" required>
-      <button class="button" onclick="goToOrder()">Login</button>
+      <button class="button" onclick="loginUser()">Login</button>
     </div>
   </div>
 
   <script>
-    function nextStep(sectionId) {
+    let savedUsername = "";
+    let savedPassword = "";
+
+    function registerUser() {
+      const name = document.getElementById("reg-name").value.trim();
+      const username = document.getElementById("reg-username").value.trim();
+      const email = document.getElementById("reg-email").value.trim();
+      const password = document.getElementById("reg-password").value.trim();
+
+      if (!name || !username || !email || !password) {
+        alert("Please fill in all registration fields.");
+        return;
+      }
+
+      savedUsername = username;
+      savedPassword = password;
+
+      alert("Registration successful! Please log in.");
       document.getElementById("register-section").classList.add("hidden");
-      document.getElementById(sectionId).classList.remove("hidden");
+      document.getElementById("login-section").classList.remove("hidden");
     }
 
-    function goToOrder() {
-      window.location.href = "order.html";
+    function loginUser() {
+      const loginUsername = document.getElementById("login-username").value.trim();
+      const loginPassword = document.getElementById("login-password").value.trim();
+
+      if (!loginUsername || !loginPassword) {
+        alert("Please fill in both login fields.");
+        return;
+      }
+
+      if (loginUsername === savedUsername && loginPassword === savedPassword) {
+        alert("Login successful!");
+        window.location.href = "order.html";
+      } else {
+        alert("Invalid username or password.");
+      }
     }
   </script>
 </body>
