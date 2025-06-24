@@ -5,7 +5,7 @@
   <title>Order a Cake</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .ingredient-box {
+    .ingredient-box, .topping-box {
       display: none;
       margin-top: 10px;
       padding: 10px;
@@ -25,19 +25,30 @@
       <input type="text" id="address" name="address" required>
 
       <label for="flavor">Cake Flavor:</label>
-      <select id="flavor" name="flavor" required onchange="showIngredients()">
+      <select id="flavor" name="flavor" required onchange="showOptions()">
         <option value="">-- Select Flavor --</option>
         <option value="chocolate">Chocolate</option>
         <option value="vanilla">Vanilla</option>
         <option value="strawberry">Strawberry</option>
-        <option value="redvelvet">Red Velvet</option>
       </select>
 
-      <label>Toppings:</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="topping" value="Sprinkles"> Sprinkles</label>
-        <label><input type="checkbox" name="topping" value="Choco Chips"> Choco Chips</label>
-        <label><input type="checkbox" name="topping" value="Fruits"> Fruits</label>
+      <div id="toppings-section">
+        <label>Toppings:</label>
+
+        <div id="chocolate-toppings" class="topping-box">
+          <label><input type="checkbox" name="topping" value="Choco Sprinkles"> Choco Sprinkles</label><br>
+          <label><input type="checkbox" name="topping" value="Candy Sprinkles"> Candy Sprinkles</label>
+        </div>
+
+        <div id="vanilla-toppings" class="topping-box">
+          <label><input type="checkbox" name="topping" value="Choco Drizzle"> Choco Drizzle</label><br>
+          <label><input type="checkbox" name="topping" value="Candy Sprinkles"> Candy Sprinkles</label>
+        </div>
+
+        <div id="strawberry-toppings" class="topping-box">
+          <label><input type="checkbox" name="topping" value="Strawberry Toppings"> Strawberry Toppings</label><br>
+          <label><input type="checkbox" name="topping" value="Strawberry Sprinkles"> Strawberry Sprinkles</label>
+        </div>
       </div>
 
       <div id="ingredients-section">
@@ -75,6 +86,7 @@
             <li>Flour</li>
           </ul>
         </div>
+      </div>
 
       <label for="delivery">Delivery Date:</label>
       <input type="date" id="delivery" name="delivery" required>
@@ -84,17 +96,19 @@
   </div>
 
   <script>
-    function showIngredients() {
+    function showOptions() {
       const flavors = ['chocolate', 'vanilla', 'strawberry'];
       const selected = document.getElementById("flavor").value;
 
+      // Show relevant ingredients
       flavors.forEach(flavor => {
         document.getElementById(`${flavor}-ingredients`).style.display = (flavor === selected) ? 'block' : 'none';
+        document.getElementById(`${flavor}-toppings`).style.display = (flavor === selected) ? 'block' : 'none';
       });
     }
 
     window.onload = () => {
-      showIngredients();
+      showOptions();
     };
   </script>
 </body>
