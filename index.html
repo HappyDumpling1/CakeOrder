@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cake Ordering System</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #0a2a66; /* deep blue text */
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(10, 42, 102, 0.2);
+      border: 2px solid #0a2a66;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #0a2a66;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #0a2a66;
+      border-radius: 5px;
+      background-color: #ffffff;
+      color: #0a2a66;
+    }
+
+    input::placeholder {
+      color: #6b8bb7;
+    }
+
+    .button {
+      width: 100%;
+      background-color: #0a2a66;
+      color: white;
+      padding: 12px;
+      font-weight: bold;
+      text-align: center;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #1049a3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    p {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Registration -->
+    <div id="register-section">
+      <h2>Register</h2>
+      <input type="text" id="reg-name" placeholder="Full Name" required>
+      <input type="text" id="reg-username" placeholder="Username" required>
+      <input type="email" id="reg-email" placeholder="Email" required>
+      <input type="password" id="reg-password" placeholder="Password" required>
+      <button class="button" onclick="nextStep('login-section')">Register</button>
+    </div>
+
+    <!-- Login -->
+    <div id="login-section" class="hidden">
+      <h2>Login</h2>
+      <input type="text" id="login-username" placeholder="Username" required>
+      <input type="password" id="login-password" placeholder="Password" required>
+      <button class="button" onclick="goToOrder()">Login</button>
+    </div>
+  </div>
+
+  <script>
+    function nextStep(sectionId) {
+      document.getElementById("register-section").classList.add("hidden");
+      document.getElementById(sectionId).classList.remove("hidden");
+    }
+
+    function goToOrder() {
+      window.location.href = "order.html";
+    }
+  </script>
+</body>
+</html>
