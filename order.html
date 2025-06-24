@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <title>Order a Cake</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .ingredient-box {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background: #f4f4f4;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -16,11 +25,12 @@
       <input type="text" id="address" name="address" required>
 
       <label for="flavor">Cake Flavor:</label>
-      <select id="flavor" name="flavor" required>
-        <option>Chocolate</option>
-        <option>Vanilla</option>
-        <option>Strawberry</option>
-        <option>Red Velvet</option>
+      <select id="flavor" name="flavor" required onchange="showIngredients()">
+        <option value="">-- Select Flavor --</option>
+        <option value="chocolate">Chocolate</option>
+        <option value="vanilla">Vanilla</option>
+        <option value="strawberry">Strawberry</option>
+        <option value="redvelvet">Red Velvet</option>
       </select>
 
       <label>Toppings:</label>
@@ -30,11 +40,52 @@
         <label><input type="checkbox" name="topping" value="Fruits"> Fruits</label>
       </div>
 
-      <label>Ingredients:</label>
-      <div class="checkbox-group">
-        <label><input type="checkbox" name="ingredient" value="Sugar"> Sugar</label>
-        <label><input type="checkbox" name="ingredient" value="Eggs"> Eggs</label>
-        <label><input type="checkbox" name="ingredient" value="Butter"> Butter</label>
+      <div id="ingredients-section">
+        <label>Ingredients:</label>
+
+        <div id="chocolate-ingredients" class="ingredient-box">
+          <strong>Chocolate Cake Ingredients:</strong>
+          <ul>
+            <li>Cocoa</li>
+            <li>Eggs</li>
+            <li>Milk</li>
+            <li>Sugar</li>
+            <li>Flour</li>
+          </ul>
+        </div>
+
+        <div id="vanilla-ingredients" class="ingredient-box">
+          <strong>Vanilla Cake Ingredients:</strong>
+          <ul>
+            <li>Vanilla Extract</li>
+            <li>Eggs</li>
+            <li>Butter</li>
+            <li>Milk</li>
+            <li>Flour</li>
+          </ul>
+        </div>
+
+        <div id="strawberry-ingredients" class="ingredient-box">
+          <strong>Strawberry Cake Ingredients:</strong>
+          <ul>
+            <li>Strawberry Puree</li>
+            <li>Cream</li>
+            <li>Sugar</li>
+            <li>Eggs</li>
+            <li>Flour</li>
+          </ul>
+        </div>
+
+        <div id="redvelvet-ingredients" class="ingredient-box">
+          <strong>Red Velvet Cake Ingredients:</strong>
+          <ul>
+            <li>Beet Juice</li>
+            <li>Cream Cheese</li>
+            <li>Eggs</li>
+            <li>Butter</li>
+            <li>Flour</li>
+          </ul>
+        </div>
       </div>
 
       <label for="delivery">Delivery Date:</label>
@@ -43,5 +94,20 @@
       <button type="submit" class="button">Place Order</button>
     </form>
   </div>
+
+  <script>
+    function showIngredients() {
+      const flavors = ['chocolate', 'vanilla', 'strawberry', 'redvelvet'];
+      const selected = document.getElementById("flavor").value;
+
+      flavors.forEach(flavor => {
+        document.getElementById(`${flavor}-ingredients`).style.display = (flavor === selected) ? 'block' : 'none';
+      });
+    }
+
+    window.onload = () => {
+      showIngredients();
+    };
+  </script>
 </body>
 </html>
