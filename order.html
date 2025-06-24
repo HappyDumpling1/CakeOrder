@@ -68,25 +68,13 @@
         <div id="strawberry-ingredients" class="ingredient-box">
           <strong>Strawberry Cake Ingredients:</strong>
           <ul>
-            <li>Strawberry Puree</li>
+            <li>Strawberry Extract</li>
             <li>Cream</li>
             <li>Sugar</li>
             <li>Eggs</li>
             <li>Flour</li>
           </ul>
         </div>
-
-        <div id="redvelvet-ingredients" class="ingredient-box">
-          <strong>Red Velvet Cake Ingredients:</strong>
-          <ul>
-            <li>Beet Juice</li>
-            <li>Cream Cheese</li>
-            <li>Eggs</li>
-            <li>Butter</li>
-            <li>Flour</li>
-          </ul>
-        </div>
-      </div>
 
       <label for="delivery">Delivery Date:</label>
       <input type="date" id="delivery" name="delivery" required>
@@ -97,7 +85,7 @@
 
   <script>
     function showIngredients() {
-      const flavors = ['chocolate', 'vanilla', 'strawberry', 'redvelvet'];
+      const flavors = ['chocolate', 'vanilla', 'strawberry'];
       const selected = document.getElementById("flavor").value;
 
       flavors.forEach(flavor => {
